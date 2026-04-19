@@ -8,7 +8,7 @@ function mergeClassNames(...parts: (string | undefined)[]): string {
 }
 
 const baseClassName =
-  "block rounded-md px-3 py-2 text-left text-sm font-medium text-stone-800 no-underline transition-colors hover:bg-stone-900/8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 focus-visible:ring-offset-2";
+  "flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm font-medium text-stone-800 no-underline transition-colors hover:bg-stone-900/8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 focus-visible:ring-offset-2";
 
 const activeClassName =
   "bg-stone-900/12 font-semibold text-stone-950";
