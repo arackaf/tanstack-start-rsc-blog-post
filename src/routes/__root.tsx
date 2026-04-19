@@ -18,25 +18,16 @@ const getAppShell = createServerFn({
   return renderServerComponent(<ApplicationShell />);
 });
 
-const getJunk = createServerFn({
-  method: "GET",
-}).handler(async () => {
-  return Math.random();
-});
-
 interface MyRouterContext {
   queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
-  // shouldReload: (x) => true,
   loader: async () => {
     console.log("__root loader");
-    // const junk = await getJunk();
 
     const appShell = await getAppShell();
     return { appShell };
-    // return { junk };
   },
   head: () => ({
     meta: [
@@ -65,7 +56,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const { appShell } = Route.useLoaderData();
-  // const { junk } = Route.useLoaderData();
 
   return (
     <html lang="en" suppressHydrationWarning>
