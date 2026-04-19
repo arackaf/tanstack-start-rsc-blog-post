@@ -7,6 +7,7 @@ import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
+import { ApplicationShell } from "#/components/ApplicationShell";
 
 interface MyRouterContext {
   queryClient: QueryClient;
@@ -46,7 +47,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        {children}
+        <ApplicationShell>{children}</ApplicationShell>
 
         <TanStackDevtools
           config={{
