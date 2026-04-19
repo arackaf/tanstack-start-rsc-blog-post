@@ -5,5 +5,5 @@ export const Route = createFileRoute("/your-account")({
 });
 
 function YourAccountRoute() {
-  return <div />;
+  return <div>Your Account</div>;
 }

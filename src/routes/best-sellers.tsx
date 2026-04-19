@@ -5,5 +5,5 @@ export const Route = createFileRoute("/best-sellers")({
 });
 
 function BestSellersRoute() {
-  return <div />;
+  return <div>Best Sellers</div>;
 }
