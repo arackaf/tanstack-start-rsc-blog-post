@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as YourAccountRouteImport } from './routes/your-account'
 import { Route as HotDealsRouteImport } from './routes/hot-deals'
-import { Route as EmptyRouteImport } from './routes/empty'
 import { Route as BestSellersRouteImport } from './routes/best-sellers'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -23,11 +22,6 @@ const YourAccountRoute = YourAccountRouteImport.update({
 const HotDealsRoute = HotDealsRouteImport.update({
   id: '/hot-deals',
   path: '/hot-deals',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EmptyRoute = EmptyRouteImport.update({
-  id: '/empty',
-  path: '/empty',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BestSellersRoute = BestSellersRouteImport.update({
@@ -44,14 +38,12 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/best-sellers': typeof BestSellersRoute
-  '/empty': typeof EmptyRoute
   '/hot-deals': typeof HotDealsRoute
   '/your-account': typeof YourAccountRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/best-sellers': typeof BestSellersRoute
-  '/empty': typeof EmptyRoute
   '/hot-deals': typeof HotDealsRoute
   '/your-account': typeof YourAccountRoute
 }
@@ -59,28 +51,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/best-sellers': typeof BestSellersRoute
-  '/empty': typeof EmptyRoute
   '/hot-deals': typeof HotDealsRoute
   '/your-account': typeof YourAccountRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/best-sellers' | '/empty' | '/hot-deals' | '/your-account'
+  fullPaths: '/' | '/best-sellers' | '/hot-deals' | '/your-account'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/best-sellers' | '/empty' | '/hot-deals' | '/your-account'
-  id:
-    | '__root__'
-    | '/'
-    | '/best-sellers'
-    | '/empty'
-    | '/hot-deals'
-    | '/your-account'
+  to: '/' | '/best-sellers' | '/hot-deals' | '/your-account'
+  id: '__root__' | '/' | '/best-sellers' | '/hot-deals' | '/your-account'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BestSellersRoute: typeof BestSellersRoute
-  EmptyRoute: typeof EmptyRoute
   HotDealsRoute: typeof HotDealsRoute
   YourAccountRoute: typeof YourAccountRoute
 }
@@ -99,13 +83,6 @@ declare module '@tanstack/react-router' {
       path: '/hot-deals'
       fullPath: '/hot-deals'
       preLoaderRoute: typeof HotDealsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/empty': {
-      id: '/empty'
-      path: '/empty'
-      fullPath: '/empty'
-      preLoaderRoute: typeof EmptyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/best-sellers': {
@@ -128,7 +105,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BestSellersRoute: BestSellersRoute,
-  EmptyRoute: EmptyRoute,
   HotDealsRoute: HotDealsRoute,
   YourAccountRoute: YourAccountRoute,
 }

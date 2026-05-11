@@ -2,7 +2,7 @@ import { HeadContent, Scripts, createRootRouteWithContext } from "@tanstack/reac
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 
-import { createFromReadableStream, renderServerComponent } from "@tanstack/react-start/rsc";
+import { renderServerComponent } from "@tanstack/react-start/rsc";
 
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 
@@ -24,8 +24,6 @@ interface MyRouterContext {
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   loader: async () => {
-    console.log("__root loader");
-
     const appShell = await getAppShell();
     return { appShell };
   },
@@ -63,9 +61,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        {/* <ApplicationShell>{children}</ApplicationShell> */}
         {appShell}
-        {/* {junk} */}
+
         {children}
         <TanStackDevtools
           config={{
