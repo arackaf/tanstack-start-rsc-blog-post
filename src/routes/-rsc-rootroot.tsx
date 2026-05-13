@@ -2,7 +2,7 @@ import { HeadContent, Scripts, createRootRouteWithContext } from "@tanstack/reac
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 
-import { createCompositeComponent, CompositeComponent } from "@tanstack/react-start/rsc";
+import { renderServerComponent } from "@tanstack/react-start/rsc";
 
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 
@@ -11,12 +11,11 @@ import appCss from "../styles.css?url";
 import type { QueryClient } from "@tanstack/react-query";
 import { ApplicationShell } from "#/components/ApplicationShell";
 import { createServerFn } from "@tanstack/react-start";
-import type { PropsWithChildren } from "react";
 
 const getAppShell = createServerFn({
   method: "GET",
 }).handler(async () => {
-  return createCompositeComponent((props: PropsWithChildren) => <ApplicationShell children={props.children} />);
+  return renderServerComponent(<ApplicationShell />);
 });
 
 interface MyRouterContext {
@@ -62,8 +61,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        <CompositeComponent src={appShell}>{children}</CompositeComponent>
+        {appShell}
 
+        {children}
         <TanStackDevtools
           config={{
             position: "bottom-right",
