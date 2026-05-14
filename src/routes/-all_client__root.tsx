@@ -2,47 +2,18 @@ import { HeadContent, Scripts, createRootRouteWithContext } from "@tanstack/reac
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 
-import { createCompositeComponent, CompositeComponent } from "@tanstack/react-start/rsc";
-
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 
 import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
 import { ApplicationShell } from "#/components/ApplicationShell";
-import { createServerFn } from "@tanstack/react-start";
-import type { FC, PropsWithChildren } from "react";
-import { SidePanelTrigger } from "#/components/SidePanelTrigger";
-import { FooterContent } from "#/components/FooterContent";
-
-const getAppShell = createServerFn({
-  method: "GET",
-}).handler(async () => {
-  return createCompositeComponent(
-    (
-      props: PropsWithChildren<{
-        HeaderContent?: FC<{ avatar: string }>;
-        FooterContent: FC;
-      }>,
-    ) => (
-      <ApplicationShell
-        children={props.children}
-        HeaderContent={props.HeaderContent}
-        FooterContent={props.FooterContent}
-      />
-    ),
-  );
-});
 
 interface MyRouterContext {
   queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
-  loader: async () => {
-    const appShell = await getAppShell();
-    return { appShell };
-  },
   head: () => ({
     meta: [
       {
@@ -69,17 +40,13 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const { appShell } = Route.useLoaderData();
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        <CompositeComponent src={appShell} HeaderContent={SidePanelTrigger} FooterContent={FooterContent}>
-          {children}
-        </CompositeComponent>
+        <ApplicationShell>{children}</ApplicationShell>
 
         <TanStackDevtools
           config={{
