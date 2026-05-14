@@ -2,17 +2,19 @@ import type { FC, PropsWithChildren } from "react";
 import { SideBarContent } from "./SideBarContent";
 
 type ApplicationShellProps = {
-  headerContent: () => React.ReactNode;
+  HeaderContent?: FC<{ avatar: string }>;
   FooterContent: FC;
 };
 
 export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (props) => {
-  const { children, headerContent, FooterContent } = props;
+  const { children, HeaderContent, FooterContent } = props;
+
+  const avatar = "https://d193qjyckdxivp.cloudfront.net/avatar.jpg";
 
   return (
     <main className="h-screen">
       <header className="fixed top-0 left-0 right-0 h-12 z-10 bg-blue-200 flex items-center px-4 gap-4">
-        <span className="w-12">{headerContent()}</span>
+        <span className="w-12">{HeaderContent ? <HeaderContent avatar={avatar} /> : null}</span>
         <span>Header</span>
       </header>
       <section className="fixed left-0 top-12 bottom-0 w-60 overflow-auto ">

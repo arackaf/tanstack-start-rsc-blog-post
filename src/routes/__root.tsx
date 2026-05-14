@@ -12,6 +12,7 @@ import type { QueryClient } from "@tanstack/react-query";
 import { ApplicationShell } from "#/components/ApplicationShell";
 import { createServerFn } from "@tanstack/react-start";
 import type { FC, PropsWithChildren } from "react";
+import { SidePanelTrigger } from "#/components/SidePanelTrigger";
 
 const getAppShell = createServerFn({
   method: "GET",
@@ -19,13 +20,13 @@ const getAppShell = createServerFn({
   return createCompositeComponent(
     (
       props: PropsWithChildren<{
-        headerContent: () => React.ReactNode;
+        HeaderContent?: FC<{ avatar: string }>;
         FooterContent: FC;
       }>,
     ) => (
       <ApplicationShell
         children={props.children}
-        headerContent={props.headerContent}
+        HeaderContent={props.HeaderContent}
         FooterContent={props.FooterContent}
       />
     ),
@@ -79,7 +80,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        <CompositeComponent src={appShell} headerContent={() => <span>Foooo</span>} FooterContent={FooterContent}>
+        <CompositeComponent src={appShell} HeaderContent={SidePanelTrigger} FooterContent={FooterContent}>
           {children}
         </CompositeComponent>
 

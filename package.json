@@ -14,6 +14,7 @@
     "update-tanstack": "npm i @tanstack/react-devtools@latest && npm i @tanstack/react-router@latest && npm i @tanstack/react-router-devtools@latest && npm i @tanstack/react-router-ssr-query@latest && npm i @tanstack/react-start@latest && npm i @tanstack/router-plugin@latest"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "^0.10.2",
     "@tanstack/react-query": "^5.99.1",
@@ -23,10 +24,13 @@
     "@tanstack/react-router-ssr-query": "^1.166.11",
     "@tanstack/react-start": "^1.167.42",
     "@tanstack/router-plugin": "^1.167.22",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.545.0",
     "moment": "^2.30.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
