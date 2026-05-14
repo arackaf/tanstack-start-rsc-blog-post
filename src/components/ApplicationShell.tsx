@@ -14,7 +14,7 @@ export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (p
   return (
     <main className="h-screen">
       <header className="fixed top-0 left-0 right-0 h-12 z-10 bg-blue-200 flex items-center px-4 gap-4">
-        <span className="w-12">{HeaderContent ? <HeaderContent avatar={avatar} /> : null}</span>
+        <span className="w-6 h-6">{HeaderContent ? <HeaderContent avatar={avatar} /> : null}</span>
         <span>Header</span>
       </header>
       <section className="fixed left-0 top-12 bottom-0 w-60 overflow-auto ">
