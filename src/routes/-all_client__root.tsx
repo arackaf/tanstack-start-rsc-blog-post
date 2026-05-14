@@ -7,13 +7,22 @@ import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
-import { ApplicationShell } from "#/components/ApplicationShell";
+
+import { ApplicationShellNonRSC } from "#/components/ApplicationShellNonRSC";
 
 interface MyRouterContext {
   queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
+  loader: async () => {
+    const user = new Promise((res) => {
+      setTimeout(() => {
+        res({ name: "Adam Rackis", avatar: "https://d193qjyckdxivp.cloudfront.net/avatar.jpg" });
+      }, 1000);
+    });
+    return { user };
+  },
   head: () => ({
     meta: [
       {
@@ -40,13 +49,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const { user } = Route.useLoaderData();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        <ApplicationShell>{children}</ApplicationShell>
+        <ApplicationShellNonRSC user={user}>{children}</ApplicationShellNonRSC>
 
         <TanStackDevtools
           config={{
