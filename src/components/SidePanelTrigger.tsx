@@ -4,12 +4,12 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "#/co
 import { cn } from "#/lib/utils";
 
 export type ImageSidePanelTriggerProps = PropsWithChildren<{
-  /** Remote or absolute URL for the image. */
+  name: string;
   avatar: string;
 }>;
 
 export const SidePanelTrigger: FC<ImageSidePanelTriggerProps> = (props) => {
-  const { avatar } = props;
+  const { name, avatar } = props;
 
   return (
     <Sheet>
@@ -27,7 +27,9 @@ export const SidePanelTrigger: FC<ImageSidePanelTriggerProps> = (props) => {
         <SheetHeader>
           <SheetTitle>Login info</SheetTitle>
         </SheetHeader>
-        <div className="mt-4 flex flex-col gap-4"></div>
+        <div className="mt-4 flex flex-col gap-4">
+          <span>User: {name}</span>
+        </div>
       </SheetContent>
     </Sheet>
   );
