@@ -13,7 +13,7 @@ export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (p
     <main className="h-screen">
       <header className="fixed top-0 left-0 right-0 h-12 z-10 bg-blue-200 flex items-center px-4 gap-4">
         <Suspense fallback={<span className="w-6 h-6 bg-gray-400 rounded-full"></span>}>
-          <UserHeaderMenu HeaderContent={HeaderContent} />
+          {HeaderContent ? <UserHeaderMenu HeaderContent={HeaderContent} /> : null}
         </Suspense>
         <span>Header</span>
       </header>
@@ -32,10 +32,7 @@ export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (p
   );
 };
 
-async function UserHeaderMenu(props: { HeaderContent?: FC<{ name: string; avatar: string }> }) {
-  if (!props.HeaderContent) {
-    return null;
-  }
+async function UserHeaderMenu(props: { HeaderContent: FC<{ name: string; avatar: string }> }) {
   const { HeaderContent } = props;
 
   await new Promise((resolve) => setTimeout(resolve, 1000));
