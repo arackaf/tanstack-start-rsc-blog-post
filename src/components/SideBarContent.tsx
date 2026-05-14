@@ -1,6 +1,4 @@
 import type { FC } from "react";
-import * as LucideReact from "lucide-react";
-import * as ManualIcons from "#/manual-icons";
 
 import { NavigationLink } from "#/components/NavigationLink";
 import { randomIcon } from "./random-icon";
@@ -8,9 +6,9 @@ import { randomIcon } from "./random-icon";
 const iconClass = "size-4 shrink-0 opacity-85";
 
 export const SideBarContent: FC = () => {
-  const Icon1 = randomIcon();
-  const Icon2 = randomIcon();
-  const Icon3 = randomIcon();
+  const Icon1 = randomIcon(0);
+  const Icon2 = randomIcon(1);
+  const Icon3 = randomIcon(2);
 
   return (
     <nav aria-label="Main" className="flex flex-col gap-1 p-3">

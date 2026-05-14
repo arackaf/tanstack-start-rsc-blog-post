@@ -13,6 +13,7 @@ import { ApplicationShell } from "#/components/ApplicationShell";
 import { createServerFn } from "@tanstack/react-start";
 import type { FC, PropsWithChildren } from "react";
 import { SidePanelTrigger } from "#/components/SidePanelTrigger";
+import { FooterContent } from "#/components/FooterContent";
 
 const getAppShell = createServerFn({
   method: "GET",

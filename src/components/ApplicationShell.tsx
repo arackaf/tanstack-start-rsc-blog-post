@@ -3,7 +3,7 @@ import { SideBarContent } from "./SideBarContent";
 
 type ApplicationShellProps = {
   HeaderContent?: FC<{ name: string; avatar: string }>;
-  FooterContent: FC;
+  FooterContent?: FC;
 };
 
 export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (props) => {
@@ -24,7 +24,7 @@ export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (p
         <div className="flex flex-col gap-2 h-full">
           <section className="min-h-[200px]">{children}</section>
           <footer className="px-4 fixed bottom-0 left-0 right-0 h-12 z-10 bg-blue-200 flex gap-4 items-center">
-            <FooterContent />
+            {FooterContent ? <FooterContent /> : null}
           </footer>
         </div>
       </section>

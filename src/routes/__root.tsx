@@ -8,7 +8,6 @@ import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
 import { ApplicationShell } from "#/components/ApplicationShell";
-import { FooterContent } from "#/components/FooterContent";
 
 interface MyRouterContext {
   queryClient: QueryClient;
@@ -47,7 +46,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        <ApplicationShell FooterContent={FooterContent}>{children}</ApplicationShell>
+        <ApplicationShell>{children}</ApplicationShell>
 
         <TanStackDevtools
           config={{
