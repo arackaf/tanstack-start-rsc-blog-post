@@ -21,7 +21,7 @@ const SheetOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      "fixed inset-0 z-50 bg-black/80 transition-opacity duration-300 data-[state=closed]:opacity-0 data-[state=open]:opacity-100",
+      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-sheet-overlay-in data-[state=closed]:animate-sheet-overlay-out",
       className,
     )}
     {...props}
@@ -31,15 +31,16 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
 const sheetVariants = cva(
-  "fixed z-50 flex flex-col gap-4 border-border bg-background p-6 shadow-lg transition-transform duration-300 ease-out",
+  "fixed z-50 flex flex-col gap-4 border-border bg-background p-6 shadow-lg will-change-transform",
   {
     variants: {
       side: {
-        top: "inset-x-0 top-0 border-b data-[state=closed]:-translate-y-full data-[state=open]:translate-y-0",
-        bottom: "inset-x-0 bottom-0 border-t data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
-        left: "inset-y-0 left-0 h-full w-[85vw] border-r data-[state=closed]:-translate-x-full data-[state=open]:translate-x-0 sm:max-w-sm",
+        top: "inset-x-0 top-0 border-b data-[state=open]:animate-sheet-in-top data-[state=closed]:animate-sheet-out-top",
+        bottom:
+          "inset-x-0 bottom-0 border-t data-[state=open]:animate-sheet-in-bottom data-[state=closed]:animate-sheet-out-bottom",
+        left: "inset-y-0 left-0 h-full w-[85vw] border-r data-[state=open]:animate-sheet-in-left data-[state=closed]:animate-sheet-out-left sm:max-w-sm",
         right:
-          "inset-y-0 right-0 h-full w-[85vw] border-l data-[state=closed]:translate-x-full data-[state=open]:translate-x-0 sm:max-w-sm",
+          "inset-y-0 right-0 h-full w-[85vw] border-l data-[state=open]:animate-sheet-in-right data-[state=closed]:animate-sheet-out-right sm:max-w-sm",
       },
     },
     defaultVariants: {

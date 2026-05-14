@@ -17,10 +17,10 @@ export const SidePanelTrigger: FC<ImageSidePanelTriggerProps> = (props) => {
         <button
           type="button"
           className={cn(
-            "group inline-flex cursor-pointer overflow-hidden rounded-lg border border-border bg-muted p-0 shadow-sm transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+            "group inline-flex cursor-pointer overflow-hidden rounded-full bg-muted p-0 shadow-sm transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           )}
         >
-          <img src={avatar} alt="User avatar" className={cn("max-h-48 w-auto max-w-full object-cover")} />
+          <img src={avatar} alt="User avatar" className={cn("w-6 h-6 rounded-full object-cover")} />
         </button>
       </SheetTrigger>
       <SheetContent side="left">
