@@ -7,11 +7,10 @@ type ApplicationShellProps = {
     name: string;
     avatar: string;
   }>;
-  FooterContent?: FC;
 };
 
 export const ApplicationShellNonRSC: FC<PropsWithChildren<ApplicationShellProps>> = (props) => {
-  const { children, FooterContent, user } = props;
+  const { children, user } = props;
 
   return (
     <main className="h-screen">
@@ -27,18 +26,16 @@ export const ApplicationShellNonRSC: FC<PropsWithChildren<ApplicationShellProps>
       <section className="max-w-[600px] pt-16 mx-auto h-full">
         <div className="flex flex-col gap-2 h-full">
           <section className="min-h-[200px]">{children}</section>
-          <footer className="px-4 fixed bottom-0 left-0 right-0 h-12 z-10 bg-blue-200 flex gap-4 items-center">
-            {FooterContent ? <FooterContent /> : null}
-          </footer>
+          <footer className="px-4 fixed bottom-0 left-0 right-0 h-12 z-10 bg-blue-200 flex gap-4 items-center"></footer>
         </div>
       </section>
     </main>
   );
 };
 
-const UserHeaderMenu: FC<{ user: Promise<{ name: string; avatar: string }> }> = async (props) => {
+const UserHeaderMenu: FC<{ user: Promise<{ name: string; avatar: string }> }> = (props) => {
   const { user } = props;
-  const { name, avatar } = await use(user);
+  const { name, avatar } = use(user);
 
   return <SidePanelTrigger name={name} avatar={avatar} />;
 };

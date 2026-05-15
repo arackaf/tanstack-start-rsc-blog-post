@@ -3,11 +3,10 @@ import { SideBarContent } from "./SideBarContent";
 
 type ApplicationShellProps = {
   HeaderContent?: FC<{ name: string; avatar: string }>;
-  FooterContent?: FC;
 };
 
 export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (props) => {
-  const { children, HeaderContent, FooterContent } = props;
+  const { children, HeaderContent } = props;
 
   return (
     <main className="h-screen">
@@ -23,9 +22,7 @@ export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (p
       <section className="max-w-[600px] pt-16 mx-auto h-full">
         <div className="flex flex-col gap-2 h-full">
           <section className="min-h-[200px]">{children}</section>
-          <footer className="px-4 fixed bottom-0 left-0 right-0 h-12 z-10 bg-blue-200 flex gap-4 items-center">
-            {FooterContent ? <FooterContent /> : null}
-          </footer>
+          <footer className="px-4 fixed bottom-0 left-0 right-0 h-12 z-10 bg-blue-200 flex gap-4 items-center"></footer>
         </div>
       </section>
     </main>

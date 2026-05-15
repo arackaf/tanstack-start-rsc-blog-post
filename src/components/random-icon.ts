@@ -1,10 +1,16 @@
+import type { ComponentType } from "react";
 import * as LucideReact from "lucide-react";
 
-/** Canonical Lucide icons only (`lucide-react` also duplicates each as `*Icon` / `Lucide*` aliases on the root). */
-const LUCIDE_CANONICAL_ICONS = Object.values(LucideReact.icons);
+type IconComponent = ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
 
-export function randomIcon(offset: number): React.FunctionComponent<{ className: string }> {
-  const len = LUCIDE_CANONICAL_ICONS.length;
-  const i = (new Date().getMinutes() + offset) % len;
-  return LUCIDE_CANONICAL_ICONS[i] as React.FunctionComponent;
+const LUCIDE_ICONS_SORTED: IconComponent[] = Object.keys(LucideReact.icons)
+  .sort()
+  .map((key) => (LucideReact.icons as Record<string, IconComponent>)[key]);
+
+export function randomIcon(offset: number): IconComponent {
+  const len = LUCIDE_ICONS_SORTED.length;
+  const epochMinute = Math.floor(Date.now() / 60_000);
+  const i = (epochMinute + offset) % len;
+
+  return LUCIDE_ICONS_SORTED[i];
 }
