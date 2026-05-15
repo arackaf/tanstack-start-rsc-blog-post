@@ -9,13 +9,13 @@ import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
-import { ApplicationShell } from "#/components/ApplicationShell";
+import { ApplicationShellEmptyRSC } from "#/components/ApplicationShellEmptyRSC";
 import { createServerFn } from "@tanstack/react-start";
 
 const getAppShell = createServerFn({
   method: "GET",
 }).handler(async () => {
-  return renderServerComponent(<ApplicationShell />);
+  return renderServerComponent(<ApplicationShellEmptyRSC />);
 });
 
 interface MyRouterContext {
