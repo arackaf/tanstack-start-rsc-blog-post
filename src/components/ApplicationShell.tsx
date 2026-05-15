@@ -2,7 +2,7 @@ import { Suspense, type FC, type PropsWithChildren } from "react";
 import { SideBarContent } from "./SideBarContent";
 
 type ApplicationShellProps = {
-  HeaderContent?: FC<{ name: string; avatar: string }>;
+  HeaderContent: FC<{ name: string; avatar: string }>;
 };
 
 export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (props) => {
@@ -12,7 +12,7 @@ export const ApplicationShell: FC<PropsWithChildren<ApplicationShellProps>> = (p
     <main className="h-screen">
       <header className="fixed top-0 left-0 right-0 h-12 z-10 bg-blue-200 flex items-center px-4 gap-4">
         <Suspense fallback={<span className="w-6 h-6 bg-gray-400 rounded-full"></span>}>
-          {HeaderContent ? <UserHeaderMenu HeaderContent={HeaderContent} /> : null}
+          <UserHeaderMenu HeaderContent={HeaderContent} />
         </Suspense>
         <span>Header</span>
       </header>

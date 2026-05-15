@@ -20,7 +20,7 @@ const getAppShell = createServerFn({
   return createCompositeComponent(
     (
       props: PropsWithChildren<{
-        HeaderContent?: FC<{ avatar: string }>;
+        HeaderContent: FC<{ name: string; avatar: string }>;
       }>,
     ) => <ApplicationShell children={props.children} HeaderContent={props.HeaderContent} />,
   );
